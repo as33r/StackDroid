@@ -64,6 +64,28 @@ def detect_tech_stack(output_dir, signatures, verbose=False):
                     continue
     return sorted(found_stacks)
 
+def categorize_stacks(detected, category_map):
+    score_map = { "Native": 0, "Hybrid": 0, "Web-based": 0 }
+    categorized = { "Native": [], "Hybrid": [], "Web-based": [] }
+
+    for tech in detected:
+        for category, techs in category_map.items():
+            if tech in techs:
+                score_map[category] += 1
+                categorized[category].append(tech)
+                break
+
+    total = sum(score_map.values())
+    percentages = {}
+    for category in score_map:
+        if total == 0:
+            percentages[category] = 0
+        else:
+            percentages[category] = round((score_map[category] / total) * 100, 2)
+
+    return categorized, percentages
+
+
 def main():
     banner()
     parser = argparse.ArgumentParser(description="📦 APK Tech Stack Detector")
@@ -89,6 +111,20 @@ def main():
     print("\n[+] Detected Tech Stacks:" if stacks else "[-] No known tech stacks detected.")
     for s in stacks:
         print(f"  🔹 {s}")
+
+    print("[*] Categorizing detected tech stacks...")
+    with open("stack_categories.json", "r") as f:
+        category_map = json.load(f)
+
+    categorized, percentages = categorize_stacks(stacks, category_map)
+
+    print("\n[✓] Categories & Confidence:")
+    for cat in ["Native", "Hybrid", "Web-based"]:
+        print(f"  {cat:<10} {percentages[cat]:>5.1f}%  -> {', '.join(categorized[cat]) if categorized[cat] else '-'}")
+
+    likely = max(percentages, key=percentages.get)
+    print(f"\n[⇒] Likely Type: {likely} ({percentages[likely]}%)")
+
 
     # Clean up
     try:
