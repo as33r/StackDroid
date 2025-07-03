@@ -10,6 +10,7 @@ It uses [`apktool`](https://github.com/iBotPeaches/Apktool) to decompile APKs an
 
 - Detects Android frameworks: Flutter, Unity, React Native, Cordova, Capacitor, Xamarin, etc.
 - Uses signature-based matching via customizable JSON config.
+- Categorized into three main types: Native, Web based, Hybrid
 ---
 
 ## 📦 Installation
