@@ -1,0 +1,16 @@
+{
+  "Native": [
+    "Java", "Kotlin", "C++ (NDK)", "Jetpack Compose", "Firebase", "Retrofit", "Realm DB",
+    "Unity", "Unreal Engine", "Godot", "GameMaker Studio", "Cocos2d-x", "Defold",
+    "LibGDX", "Corona SDK", "Flutter + Flame", "MonoGame", "AndEngine", "Moai SDK",
+    "Torque", "ShiVa3D", "WaveEngine", "Urho3D", "Ogre3D", "Lumberyard", "Lua", "Love2D"
+  ],
+  "Hybrid": [
+    "Flutter", "React Native", "Xamarin", "Cordova", "Capacitor", "Ionic", "PhoneGap",
+    "React Native Games", "Haxe/OpenFL"
+  ],
+  "Web-based": [
+    "PlayCanvas", "Phaser", "Babylon.js", "EaselJS", "Three.js", "Gideros", "Construct",
+    "Game Closure", "CocoonJS"
+  ]
+}
